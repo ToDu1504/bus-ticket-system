@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "sans-serif";
+  --font-inter: "Inter", "sans-serif";
+
+  /* Primary */
+  --color-primary: #002653;
+  --color-primary-container: #1a3c6e;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #8aa8e0;
+  
+  /* Secondary */
+  --color-secondary: #4c5e84;
+  --color-secondary-container: #bfd2fe;
+
+  /* Tertiary (Golden Accent) */
+  --color-tertiary: #392200;
+  --color-tertiary-container: #563600;
+  --color-tertiary-fixed: #ffddb4;
+  --color-on-tertiary-container: #e4980e;
+
+  /* Surface / Backgrounds */
+  --color-surface: #f7f9fc;
+  --color-surface-container-low: #f2f4f7;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e6e8eb;
+  --color-surface-variant: #e0e3e6;
+
+  /* Text & On-Surfaces */
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #43474f;
+
+  /* Borders & Outlines */
+  --color-outline: #747780;
+  --color-outline-variant: #c4c6d0;
+
+  /* Status */
+  --color-error: #ba1a1a;
+
+  /* Default Radius to Round 8 (0.5rem) */
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+}
+
+@layer components {
+  /* No-line / Ghost Border Rule */
+  .ghost-border {
+    border: 1px solid theme('colors.outline-variant');
+  }
+  .ghost-border-lighter {
+    border: 1px solid theme('colors.outline-variant');
+    opacity: 0.15;
+  }
+
+  /* Glassmorphism Rule */
+  .glass-header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196, 198, 208, 0.15); /* outline-variant */
+  }
+
+  /* Soft Elevation Rule */
+  .card-lift {
+    box-shadow: 0 4px 6px -1px rgba(25, 28, 30, 0.04), 0 2px 4px -2px rgba(25, 28, 30, 0.04);
+  }
+  .card-lift-hover:hover {
+    box-shadow: 0 20px 40px rgba(25, 28, 30, 0.06);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+  }
+
+  /* Primary Gradient CTA */
+  .btn-primary-gradient {
+    background: linear-gradient(135deg, theme('colors.primary'), theme('colors.primary-container'));
+    color: theme('colors.on-primary');
+    transition: all 0.3s ease;
+  }
+  .btn-primary-gradient:hover {
+    box-shadow: 0 4px 12px rgba(0, 38, 83, 0.2);
+    transform: translateY(-1px);
+  }
+}
+
+@layer base {
+  body {
+    background-color: theme('colors.surface');
+    color: theme('colors.on-surface');
+    font-family: theme('font.inter');
+    -webkit-font-smoothing: antialiased;
+  }
+}
