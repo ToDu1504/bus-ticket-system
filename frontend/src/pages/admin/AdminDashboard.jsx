@@ -1,23 +1,16 @@
 import { useState, useEffect } from 'react';
-import { getUsersApi, getRoutesApi, getVehiclesApi, getTripsApi } from '../../api/adminApi';
-import { Users, Map, BusFront, CalendarDays, TrendingUp, Activity } from 'lucide-react';
+import { getStatsOverviewApi } from '../../api/adminApi';
+import { Users, BusFront, TrendingUp, Activity, DollarSign, Ticket } from 'lucide-react';
 
 const AdminDashboard = () => {
-  const [stats, setStats] = useState({ users: 0, routes: 0, vehicles: 0, trips: 0 });
+  const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [users, routes, vehicles, trips] = await Promise.all([
-          getUsersApi(), getRoutesApi(), getVehiclesApi(), getTripsApi()
-        ]);
-        setStats({
-          users: users.length,
-          routes: routes.length,
-          vehicles: vehicles.length,
-          trips: trips.length
-        });
+        const data = await getStatsOverviewApi();
+        setStats(data);
       } catch (error) {
         console.error('Lỗi khi tải dữ liệu dashboard:', error);
       } finally {
@@ -27,11 +20,15 @@ const AdminDashboard = () => {
     fetchStats();
   }, []);
 
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value || 0);
+  };
+
   const metrics = [
-    { label: 'Tổng số Người dùng', value: stats.users, icon: <Users size={24}/>, bg: 'bg-primary/10', iconColor: 'text-primary' },
-    { label: 'Tuyến đường khả dụng', value: stats.routes, icon: <Map size={24}/>, bg: 'bg-green-100', iconColor: 'text-green-600' },
-    { label: 'Số lượng Đầu xe', value: stats.vehicles, icon: <BusFront size={24}/>, bg: 'bg-amber-100', iconColor: 'text-amber-600' },
-    { label: 'Tổng các Chuyến đi', value: stats.trips, icon: <CalendarDays size={24}/>, bg: 'bg-rose-100', iconColor: 'text-rose-600' },
+    { label: 'Doanh thu xác nhận', value: formatCurrency(stats.confirmedRevenue), icon: <DollarSign size={24}/>, bg: 'bg-green-100', iconColor: 'text-green-600' },
+    { label: 'Tổng lượt đặt vé', value: stats.totalBookings, icon: <Ticket size={24}/>, bg: 'bg-primary/10', iconColor: 'text-primary' },
+    { label: 'Số lượng Đầu xe', value: stats.totalVehicles, icon: <BusFront size={24}/>, bg: 'bg-amber-100', iconColor: 'text-amber-600' },
+    { label: 'Người dùng hệ thống', value: stats.totalUsers, icon: <Users size={24}/>, bg: 'bg-rose-100', iconColor: 'text-rose-600' },
   ];
 
   return (
