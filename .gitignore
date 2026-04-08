@@ -1,3 +1,6 @@
 .env
 node_modules
 .vscode
+
+createAdmin.js
+database_schema.sql
