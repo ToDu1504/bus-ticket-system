@@ -91,7 +91,7 @@ function App() {
       </main>
       
       <footer className="mt-auto py-8 text-center text-sm font-medium text-on-surface-variant border-t border-outline-variant/20 bg-surface-container-lowest">
-        © 2026 BusGo. Hệ thống được phát triển với Tô Khánh Vũ.
+        © 2026 BusGo.
       </footer>
     </div>
   );
