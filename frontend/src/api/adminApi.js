@@ -19,3 +19,10 @@ export const deleteTripApi = async (id) => (await axiosInstance.delete(`/trips/$
 export const getUsersApi = async () => (await axiosInstance.get('/users')).data;
 export const updateUserRoleApi = async (id, role) => (await axiosInstance.put(`/users/${id}/role`, { role })).data;
 export const deleteUserApi = async (id) => (await axiosInstance.delete(`/users/${id}`)).data;
+
+// Statistics
+export const getStatsOverviewApi = async (params) => (await axiosInstance.get('/stats/overview', { params })).data;
+export const getRevenueByMonthApi = async () => (await axiosInstance.get('/stats/revenue-by-month')).data;
+export const getTopRoutesApi = async (params) => (await axiosInstance.get('/stats/top-routes', { params })).data;
+export const getBookingStatusApi = async (params) => (await axiosInstance.get('/stats/booking-status', { params })).data;
+export const getRecentInvoicesApi = async () => (await axiosInstance.get('/stats/recent-invoices')).data;
