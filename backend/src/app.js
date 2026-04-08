@@ -24,19 +24,6 @@ const statsRoutes = require("./routes/stats.routes");
 
 
 
-// Root endpoint for testing
-app.get("/", (req, res) => {
-  res.send("Bus Ticket Management API is running...");
-});
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(_dirname, "../../frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(_dirname, "../../frontend/dist/index.html"));
-  });
-}
-
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -46,5 +33,13 @@ app.use("/api/trips", tripRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/stats", statsRoutes);
 
+// Production: serve frontend static files AFTER API routes
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(_dirname, "../frontend/dist")));
+
+  app.use((req, res) => {
+    res.sendFile(path.join(_dirname, "../frontend/dist/index.html"));
+  });
+}
 
 module.exports = app;
