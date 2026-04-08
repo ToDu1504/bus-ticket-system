@@ -12,6 +12,7 @@ import ManageVehicles from '../pages/admin/ManageVehicles';
 import ManageRoutes from '../pages/admin/ManageRoutes';
 import ManageTrips from '../pages/admin/ManageTrips';
 import ManageUsers from '../pages/admin/ManageUsers';
+import ManageStats from '../pages/admin/ManageStats';
 import Profile from '../pages/customer/Profile';
 import InvoiceHistory from '../pages/customer/InvoiceHistory';
 
@@ -43,6 +44,7 @@ const AppRouter = () => {
           <Route path="/admin/routes" element={<ManageRoutes />} />
           <Route path="/admin/trips" element={<ManageTrips />} />
           <Route path="/admin/users" element={<ManageUsers />} />
+          <Route path="/admin/stats" element={<ManageStats />} />
         </Route>
       </Route>
     </Routes>

@@ -1,7 +1,7 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/authSlice';
-import { LayoutDashboard, BusFront, Map, CalendarDays, Users, LogOut, Settings, BusIcon } from 'lucide-react';
+import { LayoutDashboard, BusFront, Map, CalendarDays, Users, LogOut, Settings, BusIcon, TrendingUp } from 'lucide-react';
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ const AdminLayout = () => {
     { to: '/admin/routes', label: 'Quản Lý Tuyến Đường', icon: <Map size={20} /> },
     { to: '/admin/trips', label: 'Quản Lý Chuyến Đi', icon: <CalendarDays size={20} /> },
     { to: '/admin/users', label: 'Quản Lý Thành Viên', icon: <Users size={20} /> },
+    { to: '/admin/stats', label: 'Thống Kê Doanh Thu', icon: <TrendingUp size={20} /> },
   ];
 
   return (
@@ -26,7 +27,7 @@ const AdminLayout = () => {
       <aside className="w-72 flex flex-col shadow-2xl relative z-10 flex-shrink-0" style={{background:'var(--color-primary)'}}>
         {/* Logo */}
         <div className="px-6 py-8 border-b" style={{borderColor:'rgba(255,255,255,0.08)'}}>
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <div className="p-2.5 rounded-xl" style={{background:'rgba(255,255,255,0.12)'}}>
               <BusFront size={24} className="text-white" />
             </div>
@@ -34,7 +35,7 @@ const AdminLayout = () => {
               <h2 className="text-xl font-black text-white tracking-tight">BusGo Admin</h2>
               <p className="text-xs font-medium mt-0.5" style={{color:'rgba(255,255,255,0.5)'}}>Bảng điều khiển hệ thống</p>
             </div>
-          </div>
+          </Link>
         </div>
         
         {/* Navigation */}

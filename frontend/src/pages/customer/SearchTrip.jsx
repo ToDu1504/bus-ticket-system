@@ -78,7 +78,7 @@ const SearchTrip = () => {
             {trips.length > 0 ? trips.map((t) => (
               <div key={t.id} className="bg-surface-container-lowest rounded-2xl p-6 ghost-border card-lift-hover flex flex-col h-full relative overflow-hidden group">
                 {/* Accent Decorator */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container" />
+                {/* <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary-container" /> */}
                 
                 <div className="flex justify-between items-start mb-6">
                   <div className="bg-primary-container/10 text-primary-container px-3 py-1 rounded-lg font-bold text-xs uppercase tracking-wider">
